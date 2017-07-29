@@ -1,0 +1,274 @@
+<ion-view title="Frequently Ask Questions" id="page5">
+
+    <ion-content  class="has-header"  scroll="true">
+ 
+        <div class="button-bar">
+           <a class="button button-positive" ng-click="sales()">Sales</a>
+		   <a class="button button-balanced" ng-click="service()">Service</a>
+		   <a class="button button-assertive" ng-click="parts()">Parts</a>		   
+		</div> 
+
+        <div class="list card" id="secondCard" ng-show="showSales">
+        	<ion-list>
+            
+                <p class="faq">Sales FAQ</p>
+
+                <ion-item class="item-stable whitelist"
+                    ng-click="toggleGroup(1)"
+                    ng-class="active: isGroupShown(1)">
+                    
+                    <i class="icon" ng-class="isGroupShown(1) ? 'ion-minus' : 'ion-plus'"></i>
+                        &nbsp;
+                        How long does it take to get my OR/CR for my new vehicle?
+                </ion-item>
+
+                <ion-item class="item-accordion item-text-wrap" item-text-wrap" item-text-wrap" ng-show="isGroupShown(1)">
+               		<p class="item-text-wrap">It usually takes two to three weeks from the date of release.</p>
+                </ion-item>
+
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(2)"
+                    ng-class="active: isGroupShown(2)">
+                 
+                    <i class="icon" ng-class="isGroupShown(2) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    How long will it take to process my auto loan application?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap" item-text-wrap"" ng-show="isGroupShown(2)">
+                    <p class="whitelist">Auto loans applications are processed by banks which usually takes two to three days to process.</p>
+                </ion-item>
+
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(3)"
+                    ng-class="active: isGroupShown(3)">
+                 
+                    <i class="icon" ng-class="isGroupShown(3) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    What are the minimum requirements to apply for an auto loan?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap" item-text-wrap"" ng-show="isGroupShown(3)">
+                    <ul>
+                        <li>- Payslip</li>
+                        <li>- Bank statement</li>
+                        <li>- Contract of employment</li>
+                    </ul>
+                </ion-item>
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(4)"
+                    ng-class="active: isGroupShown(4)">
+                 
+                    <i class="icon" ng-class="isGroupShown(4) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Can I trade-in my old vehicle? 
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(4)">
+                    <p class="whitelist">Yes, you can trade-in your old vehicle depending on the year and model.</p>
+                </ion-item>
+
+            
+            </ion-list>
+        </div>
+
+        <div class="list card" id="secondCard" ng-show="showService">
+            <ion-list>
+                <p class="faq">Service FAQ</p>
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(1)"
+                    ng-class="active: isGroupShown(1)">
+                    
+                    <i class="icon" ng-class="isGroupShown(1) ? 'ion-minus' : 'ion-plus'"></i>
+                        &nbsp;How to make Service Appointment?
+                </ion-item>
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(1)">
+                    <p class="whitelist">EMAIL,TXT and CALL DAYS OR THE DAY BEFORE <br>OF THE PREFFERED APPOINTMENT</p>
+
+                    <p class="whitelist">Land line No. (045)963-6363, 963-2222</p>
+
+                    <p class="whitelist">Globe No. 0917-808-4043</p>
+
+                    <p class="whitelist">Smart No. 0920-544-5905</p>
+
+                    <p class="whitelist">Email add: sgparungao@mitsubishicarworld.com.ph</p>
+                </ion-item>
+
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(2)"
+                    ng-class="active: isGroupShown(2)">
+                 
+                    <i class="icon" ng-class="isGroupShown(2) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    How long it will take for Light, Regular <br>and Heavy PMS?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(2)">
+                    <ul>
+                        <li>Light 1.5Hours</li>
+                        <li>Regular 2.0Hours</li>
+                        <li>Heavy 3-4 Hours</li>
+                    </ul>
+                </ion-item>
+
+
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(4)"
+                    ng-class="active: isGroupShown(4)">
+                 
+                    <i class="icon" ng-class="isGroupShown(4) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    When is the vehicle due for the Periodic Maintenance Service or PMS?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(4)">
+                    <p class="whitelist">We highly recommend for every 5,000KM or 3 months whichever comes first</p>
+                </ion-item>
+
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(5)"
+                    ng-class="active: isGroupShown(5)">
+                 
+                    <i class="icon" ng-class="isGroupShown(5) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Do you accept credit card payment?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(5)">
+                    <p class="whitelist">Yes., we accept all major credit cards </p>
+                </ion-item>
+
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(6)"
+                    ng-class="active: isGroupShown(6)">
+                 
+                    <i class="icon" ng-class="isGroupShown(6) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                   How long is the warranty period after service is done in your Service Center?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(6)">
+                    <p class="whitelist">48 Hours after service </p>
+                </ion-item>
+
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(7)"
+                    ng-class="active: isGroupShown(7)">
+                 
+                    <i class="icon" ng-class="isGroupShown(7) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Do you have towing services?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(7)">
+                    <p class="whitelist">Yes, we offer towing services.  You can call the following numbers for availability:</p>
+                    <ul>
+                        <li>Globe No. 0917-808-4043</li>
+                        <li>Smart No. 0918-854-2925</li>
+                    </ul>
+                </ion-item>
+
+
+            
+            </ion-list>
+        </div>
+
+        <div class="list card" id="secondCard" ng-show="showParts">
+            <ion-list>
+                
+                <p class="faq">Parts FAQ</p>
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(1)"
+                    ng-class="active: isGroupShown(1)">
+                    
+                    <i class="icon" ng-class="isGroupShown(1) ? 'ion-minus' : 'ion-plus'"></i>
+                        &nbsp;How to inquire for Mitsubishi Genuine Parts
+                </ion-item>
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(1)">
+                    <p class="whitelist">Just call us in our Direct Line (045) 961-1510 or mobile number 0918-854-2172</p>
+                </ion-item>
+
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(2)"
+                    ng-class="active: isGroupShown(2)">
+                 
+                    <i class="icon" ng-class="isGroupShown(2) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Do you sell spare parts for other brands?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(2)">
+                    <p class="whitelist">We only sell or offer Mitsubishi Genuine Parts.</p>
+                </ion-item>
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(3)"
+                    ng-class="active: isGroupShown(3)">
+                 
+                    <i class="icon" ng-class="isGroupShown(3) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Can I buy vehicle parts online?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(3)">
+                    <p class="whitelist">Mitsubishi Genuine Parts can be purchased through our over-the-counter Section at Carworld San Fernando. </p>
+                </ion-item>
+
+
+
+                <ion-item class="item-stable"
+                    ng-click="toggleGroup(4)"
+                    ng-class="active: isGroupShown(4)">
+                 
+                    <i class="icon" ng-class="isGroupShown(4) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Do you give warranty on spare parts?
+                </ion-item>
+
+
+                <ion-item class="item-accordion item-text-wrap"" ng-show="isGroupShown(4)">
+                    <p class="whitelist">Yes. Parts warranty is being given only by the service center and valid three (3) months from the invoice date. </p>
+                </ion-item>
+
+
+
+
+            
+            </ion-list>
+        </div>
+
+
+
+
+  </ion-content>
+</ion-view>

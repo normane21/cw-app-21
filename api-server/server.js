@@ -332,7 +332,7 @@ apiRoutes.get('/v2/admin/all/officer', function(req, res) {
                 jsonData.push(vehicles);
             })
             .on('error', function(err){
-              
+               
             })
             .on('end', function(){
               console.log("Officer Data Retrieved");
@@ -364,6 +364,52 @@ apiRoutes.get('/v2/admin/all/officer', function(req, res) {
 
       });
 });
+
+// Get Individual Officers Route 
+apiRoutes.get('/v2/admin/individual/officer/:id', function(req, res) {
+    var jsonData=[];
+    console.log('Get All Officers Details');
+    var o_id = req.params.id;
+
+    AdminUser.findOne({
+        auth_key: req.headers['x-auth-key']
+    }, function(err, user) {
+
+        if (err) {
+          console.log(err);
+           throw err;
+        }
+
+        if (!user) {
+          //console.log(res);
+          res.status(401).json({ message: 'Unauthorized User Access', code: 100002 });
+        } else if (user) {
+            console.log(datetime);
+            
+
+            Officer.find({_id: o_id}).cursor()
+            .on('data', function(officer){        
+                console.log('Individual Officer Get Successfully');            
+                jsonData.push(officer);
+                res.status(200).json(jsonData);
+            })
+            .on('error', function(err){
+                console.log('Error Get Officer')
+                 res.status(402).json({ message: 'User Not Exist!!!.', code: 10112 });
+            })
+                
+                   // res.status(200).json({ 
+                   //   'message': 'Vehicle info set successfully.',
+                   //   'data': user
+                   // });
+               
+           
+         
+        }
+
+      });
+});
+
 
 // Insert Officer Route
 apiRoutes.post('/v2/admin/officer', function(req, res) {

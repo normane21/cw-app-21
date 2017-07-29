@@ -49,7 +49,7 @@ angular.module('starter.controllers', [])
   //});
 
   APIService.getallofficers(localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
-        console.log(JSON.stringify(data))
+        alert (JSON.stringify(data))
 
         $scope.chats = data
   })

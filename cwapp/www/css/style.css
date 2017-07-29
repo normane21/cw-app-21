@@ -1,0 +1,731 @@
+*{margin:0px;padding:0px}
+body{font-family: Arial, Helvetica, sans-serif;background-color: #e9eaed;color: #333333;}
+
+
+
+#container{
+	margin:0 auto;
+	margin-top: 0px;
+	width:100%
+
+}
+
+#timelineContainer{
+	width:100%;
+	position:relative
+}
+
+#timelineBackground {
+	height: auto;
+	position: relative;	
+	margin-top: 0px;
+	overflow: hidden;
+	background-color:#ffffff;
+}
+
+
+
+#timelineTitle {
+	width: 100%;
+	color: #ffffff;
+	font-size: 24px;
+	margin-top: 5%;
+	position: absolute;
+	text-align: center;
+	font-weight: bold;
+
+	padding-left: 20px;
+	padding-right: 20px;
+	z-index: 999;
+	text-transform: capitalize;
+}
+
+#timelineNav {
+	border: 0px solid #d6d7da;
+	background-color: #ffffff;
+	min-height: 43px;
+	margin-bottom: 10px;
+	margin-top: 30%;
+	position: relative;
+}
+.bgImage {
+	width: 100%;
+	height: 100%;
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+.bgProfile{
+	width: 100%;
+	height: auto;
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto;
+	margin-top: 0px;
+}
+
+h3, h5 {
+    font-family: "Helvetica";
+}
+
+.profile-name{
+	color: #292f33;
+	text-align: center;
+
+}
+
+.profile-sub-name{
+	color: #292f33;
+	
+
+}
+
+.ion-email, .ion-ios-telephone, .ion-android-phone-portrait, .ion-android-textsms{
+	font-size: 30px;
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+#button-profile{
+	color: #66757f;
+	margin-top: -5px;
+	font-size: 12px;
+}
+
+.button{
+	border:0px;
+}
+
+.position{
+	font-size: 14px;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 30px;
+	color:#66757f;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.profile-details{
+	padding-left: 20px;
+	font-size: 12px;
+}
+
+#detail-icon{
+	font-size: 20px;
+	color:#66757f;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#office-map{
+	margin-top: 20px;
+	padding-left: 20px;
+	font-weight: bold;
+}
+
+#map {
+  width: 100%;
+  height: 200px;
+}
+
+.scroll {
+    height: 100%;
+}
+
+.profile-pic{
+	width: 50px;
+	height:auto;
+	margin-left:2%;
+	float:left; 
+	height:40px;
+	width:40px;
+	position: relative;
+  	top: 50%;
+  	transform: translateY(20%);	
+  	border-radius: 50%;
+  	border: 3px solid #d6d7da;
+}
+
+.brand-pic{
+	float:right; 
+	height:auto;
+	width:30px;	
+	margin-left: 10px;
+	vertical-align: middle;
+	position: relative;
+  	top: 70%;
+  	transform: translateY(40%);	
+}
+
+
+.action{
+	text-decoration: none;
+}
+
+#details{
+	vertical-align:middle;
+    width: 100%;
+    height: 100%
+
+}
+
+.detailed-item{
+	
+    
+}
+
+.item.ng-enter {
+    -webkit-animation: fadeInLeft 500ms;
+    animation: fadeInLeft 500ms;
+}
+
+.item.ng-enter-stagger {
+  -webkit-animation-delay:100ms;
+  animation-delay:100ms;
+
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration:0;
+  animation-duration:0;
+}
+
+#star{
+	color: #ffd700;
+}
+
+#star-individual{
+	color: #ffd700;
+	font-size: 30px;
+}
+
+#minus{
+	color: #fff;
+}
+
+.icon_custom{
+	color: green;
+}
+
+.icon_custom2{
+	color: #E51513;
+}
+
+/* Menu */
+
+.menu .bar.bar-header.expanded {
+    background-image: url('../img/lausauto-bkg2.jpg');
+    background-size: 100%;
+    background-position: 0%;
+    transition: all .5s ease-in-out;
+    height:138px;
+    top:0;
+}
+
+.bar-logo{
+	position: absolute;
+	width: 100%;
+	height: 70px;
+	background-color: #fff;
+	bottom: 0;
+	left:0;
+	opacity: 0.7;
+  
+	
+}
+
+.menu.menu-left * {
+    font-weight: bold;
+}
+
+.item-radio input:checked ~ .item-content {
+    background: transparent;
+}
+
+.menu-open .ion-navicon {
+    transform: rotate(-360deg);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-open .ion-navicon:before {
+    content: "\f2ca";
+}
+
+.item.item-radio .radio-icon {
+    opacity: 1;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.item.item-radio:active .radio-icon {
+    opacity: 0;
+    transform: scale(1.6);
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.directions.button-bar {
+    margin: 0 auto;
+    width: 33.333%;
+}
+
+.directions.button-bar button {
+    line-height: 26px;
+}
+
+.ion-arrow-right-c.top-left:before {
+    transform: rotate(-135deg);
+}
+
+.ion-arrow-right-c.top-right:before {
+    transform: rotate(-45deg);
+}
+
+.ion-arrow-right-c.bottom-left:before {
+    transform: rotate(-225deg);
+}
+
+.ion-arrow-right-c.bottom-right:before {
+    transform: rotate(45deg);
+}
+
+#modal {
+    background-color: #ef4e3a;
+    border-radius: 100%;
+    box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    height: 50%;
+    bottom: 0;
+    opacity: 0;
+    width: 700px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.expand #modal {
+    background-color: #DBDBDB;
+    border-radius: 0;
+    border-top: solid 4px #ef4e3a;
+    opacity: 1;
+    z-index: 9;
+}
+
+.avatar{
+	position: absolute;
+	width:auto;
+	height: auto;
+	vertical-align: bottom;
+	bottom: 0;
+	padding-bottom: 7px;
+	padding-left: 55px;
+
+}
+
+.menu-bottom{
+	position: absolute;;
+	bottom: 0;
+	padding-left: 80px;
+	padding-bottom: 25px;
+	font-size: 18px;
+	color: #b20000;
+	text-shadow: 0 0 2px #fff;
+}
+
+.has-expanded-header{
+	padding-top: 94px;
+}
+
+.popup-head {
+
+    background-color: #ef473a;
+
+}
+
+.popup-title {
+
+    color: white;
+
+}
+
+.lgc-header {
+  background-color: #b20000 !important;
+  color: #fff;
+}
+
+.powered{
+	font-size: 10px;
+	color: #808080;
+	text-align: center;
+	padding-left: 25%;
+	vertical-align: middle;
+	padding-top: 15px;
+}
+
+.profile-details{
+	padding-left: 10px;
+	padding-bottom: 0px;
+
+}
+
+.position-details{
+	font-style: italic;
+	padding-left: 10px;
+
+}
+
+
+
+
+a:link {
+    text-decoration: none;
+}
+
+#item1{
+	background: url("../img/vehicle-registration.jpg");
+	height: 100px;
+	width: 90%;
+	display: table;
+	margin-top: 10px;
+	border-radius: 0px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#item1 .content{
+	color:#fff;
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#item2{
+	background: url("../img/insurance-policy.jpg");
+	height: 100px;
+	width: 90%;
+	display: table;
+	margin-top: 10px;
+	border-radius: 0px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#item2 .content{
+	color:#fff;
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#item3{
+	background: url("../img/sales-inquiries.jpg");
+	height: 100px;
+	width: 90%;
+	display: table;
+	margin-top: 10px;
+	border-radius: 0px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#item3 .content{
+	color:#fff;
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5%;
+}
+
+#item4{
+	background: url("../img/service-department.jpg");
+	height: 100px;
+	width: 90%;
+	display: table;
+	margin-top: 10px;
+	border-radius: 0px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#item4 .content{
+	color:#fff;
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#item5{
+	background: url("../img/service-appointment.jpg");
+	height: 100px;
+	width: 90%;
+	display: table;
+	margin-top: 10px;
+	border-radius: 0px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#item5 .content{
+	color:#fff;
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#item6{
+	background: url("../img/parts-department.jpg");
+	height: 100px;
+	width: 90%;
+	display: table;
+	margin-top: 10px;
+	border-radius: 0px;
+	margin-left: 5%;
+	margin-right: 5%;
+	
+}
+
+#item6 .content{
+	color:#fff;
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.button-bar{
+	padding-top: 10px;
+}
+
+
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+.home-pic{
+	background: url("../img/carworld-sanfernando.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+
+.home-bar{
+	margin-top: -40px;
+}
+
+.faq{
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.button-bar{
+	width: 95%;
+	margin-left: 10px;
+	vertical-align: middle;
+	
+}
+
+.item-stable{
+	overflow: initial;
+    white-space: initial;
+}
+
+.item-text-wrap{
+	text-align: center;
+	font-style: italic;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.second{
+	font-size: 14px;
+	margin-left: 25px;
+	color: #ef473a;
+}
+
+.second-text{
+	font-size: 12px;	
+}
+
+.item{
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+}
+
+
+.background {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+    
+}
+
+.home-image {
+    width:100%;
+    height:100%;
+    z-index: 1;
+}
+
+
+
+.web{
+	width: 50px;
+	display:block;
+    margin:auto;
+    margin-top: 70%;
+    margin-left: 30%;
+
+}
+
+.facebook{
+	width: 50px;
+	display:block;
+    margin:auto;
+    margin-top: -15%;
+    margin-left: 50%;
+   
+}
+
+.header-color{
+	
+	background: #ed3237 !important;
+}
+
+
+.header-item{
+	color: #fff !important;
+}
+
+
+.tabs-color-active-positive {
+color: red !important;
+
+}
+
+.contact_details{
+	color: #ef473a !important;
+}
+
+
+.body-home{
+	
+
+}
+
+.btn-site {
+  
+    
+    
+    border-left: 1px solid #86c7fe;
+   
+    
+    position: absolute;
+    top: 45%;
+    width: 80%;
+ 	left: 10%;
+    height: 8%;
+
+    background: #ed3237; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#ed3237, #f66b6f); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#ed3237, #f66b6f); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ed3237, #f66b6f); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ed3237, #f66b6f); /* Standard syntax */
+    
+}
+
+.btn-facebook {
+    
+   
+    border-left: 1px solid #86c7fe;
+    position: absolute;
+    top: 60%;
+    width: 80%;
+ 	left: 10%;
+    height: 8%;
+    
+    background: #3b5998; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#3b5998, #4d68a0); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#3b5998, #4d68a0); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#3b5998, #4d68a0); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#3b5998, #4d68a0); /* Standard syntax */
+}
+
+.btn-blue-icon {
+    color: white;
+    width: 13px;
+    position: absolute;
+}
+
+ .separator {
+      content: '';
+      display: inline-block;
+      background: #7c7c7c;
+     
+      height: 35px;
+      width: 1px;
+      left: 45px;
+      vertical-align: middle;
+      
+      margin-top: 3px;
+      margin-left: 10px;
+      opacity: 0.3;
+
+ }
+
+ .icon-homepage{
+ 	display: absolute;
+ 	
+ }
+
+ .home-text{
+ 	width: 100%;
+ 	 font-family: "Helvetica", Times, serif;
+ 	 font-size: 18px;
+ }
+
+ .home-icon{
+ 	font-size: 36px;
+ 	margin-right: 10px
+ }
+
+ .home-eagel{
+ 	margin-right: 10px
+ }
+
+ .home-logo{
+ 	
+ 	text-align: center;
+ }
+
+ .body-logo{
+ 
+ 	position: relative;
+ 	top: 70px;
+ }
