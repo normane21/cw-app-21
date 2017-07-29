@@ -495,8 +495,10 @@ apiRoutes.post('/v2/admin/officer', function(req, res) {
 
 
 // Update Officer Route
-apiRoutes.put('/v2/admin/officer', function(req, res) {
+apiRoutes.put('/v2/admin/officer/:id', function(req, res) {
  console.log('Update Officer Details');
+ var o_id = req.params.id;
+
   // find the uuid
   AdminUser.findOne({
     auth_key: req.headers['x-auth-key']
@@ -517,7 +519,7 @@ apiRoutes.put('/v2/admin/officer', function(req, res) {
              
                     
             
-            Officer.findOne({ _id: req.body._id }, function (err, officer){    
+            Officer.findOne({ _id: o_id }, function (err, officer){    
             
                 officer.department = req.body.department,
                 officer.emp_name1 =  req.body.emp_name1,
@@ -550,7 +552,7 @@ apiRoutes.put('/v2/admin/officer', function(req, res) {
 
                     console.log('App ID: ' + req.body.app_id);
 
-                    Sync.findOne({ app_id: req.body.app_id }, function (err, syncstatus){
+                    Sync.findOne({ app_id: 'norman21-cwapp' }, function (err, syncstatus){
                         console.log('Sync Status: ' + syncstatus);
                         console.log('Update Officer Name');
                         syncstatus.status = 1;
@@ -601,10 +603,10 @@ apiRoutes.post('/v2/admin/sync', function(req, res) {
        
            
             Sync.findOne({ app_id: req.body.app_id }, function (err, syncstatus){
-                console.log('Sync Status: ' + syncstatus);
+                console.log('Sync Status: ' + syncstatus.status);
                 console.log('Sync Status Updated');
-                syncstatus.status = 0;
-                
+                syncstatus.status += 1;
+                console.log('Updated Status : ' + syncstatus.status)
 
                 syncstatus.save(function(err) {
                     if (err) throw err;                                           
