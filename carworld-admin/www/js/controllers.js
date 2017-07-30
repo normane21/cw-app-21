@@ -60,7 +60,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, APIService, $ionicPopup) {
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, APIService, $ionicPopup, $ionicLoading) {
    $scope.officer={};
 
   APIService.getindividualofficer($stateParams.chatId, localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
@@ -83,11 +83,15 @@ angular.module('starter.controllers', [])
 
   //$scope.chats = Chats.all();
   $scope.Update = function() {
+
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
     //alert(JSON.stringify($scope.officer))
     APIService.updateindividualofficer($stateParams.chatId, localStorage.getItem("token"), localStorage.getItem("auth_key"), $scope.officer).success(function(data){
 
       //alert('Success Update : ' + JSON.stringify(data))
-
+      $ionicLoading.hide()
       $ionicPopup.alert({
           title: 'Success',
           template: '<center>Successfully Updated {{$scope.officer.department}} Record.</center>'

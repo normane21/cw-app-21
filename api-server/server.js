@@ -105,13 +105,13 @@ apiRoutes.post('/oauth/token', function(req, res) {
     } else if (user) {
       console.log('GetToken');
         
-           console.log(user.initial_password); 
-           console.log(req.body.initial_password);
+           //console.log(user.initial_password); 
+           //console.log(req.body.initial_password);
           // check if password matches
           if (user.initial_password != req.body.initial_password) {
             res.status(400).json({ success: false, message: 'Authentication failed. Wrong password.' });
           } else {
-            console.log('Creating Token')
+            //console.log('Creating Token')
             // create a token
             var expiration = token_expiration;
             var token = jwt.sign(user, app.get('mockapisecret'), {
@@ -120,7 +120,7 @@ apiRoutes.post('/oauth/token', function(req, res) {
             var refresh_token = user.refresh_token;
 
 
-            console.log('My Token Expiration : ' + expiration);
+            //console.log('My Token Expiration : ' + expiration);
             //console.log('Access Token:' + token);
             //console.log('Refresh Token:' + refresh_token);
             // return the information including token as JSON
@@ -128,6 +128,7 @@ apiRoutes.post('/oauth/token', function(req, res) {
               message: 'Device Is Authorized To Use The App!',
               'access_token': token,
               username: user.username,
+              auth_key: user.auth_key,
               token_type: 'bearer',
               expires_in: expiration,
               'refresh_token': refresh_token
@@ -469,7 +470,7 @@ apiRoutes.post('/v2/admin/officer', function(req, res) {
                 Sync.findOne({ app_id: req.body.app_id }, function (err, syncstatus){
                     console.log('Sync Status: ' + syncstatus);
                     console.log('Update Status');
-                    syncstatus.status = 1;
+                    syncstatus.status += 1;
                     
 
                     syncstatus.save(function(err) {
@@ -555,7 +556,7 @@ apiRoutes.put('/v2/admin/officer/:id', function(req, res) {
                     Sync.findOne({ app_id: 'norman21-cwapp' }, function (err, syncstatus){
                         console.log('Sync Status: ' + syncstatus);
                         console.log('Update Officer Name');
-                        syncstatus.status = 1;
+                        syncstatus.status += 1;
                         
 
                         syncstatus.save(function(err) {
