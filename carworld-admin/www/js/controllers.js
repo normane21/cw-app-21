@@ -33,20 +33,53 @@ angular.module('starter.controllers', [])
     
 })
 
-.controller('ViewCtrl', function($scope) {
+.controller('ViewCtrl', function($scope, $ionicLoading, APIService, $ionicPopup) {
+
+    $scope.officer={};
+
+    
+
+    $scope.AddListing = function() {
+        //alert(JSON.stringify($scope.officer))
+
+        $ionicLoading.show({
+          template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+        });
+        
+        APIService.addListing(localStorage.getItem("token"), localStorage.getItem("auth_key"), $scope.officer).success(function(data){
+
+          //alert('Success Update : ' + JSON.stringify(data))
+          $ionicLoading.hide()
+          $ionicPopup.alert({
+              title: 'Success',
+              template: '<center>Successfully Added {{$scope.officer.department}} Record.</center>'
+          });
+
+        })
+    }    
+    
+})
+
+.controller('DashCtrl', function($scope) {
+    
 
 })
 
-.controller('DashCtrl', function($scope) {})
-
-.controller('ChatsCtrl', function($scope, Chats, APIService) {
+.controller('ChatsCtrl', function($state, $scope, Chats, APIService) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
   //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  $scope.$on('$ionicView.enter', function(e) {
+        APIService.getallofficers(localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
+            //alert(JSON.stringify(data))
+
+            $scope.chats = data
+      })
+  });
+
+  //$state.go($state.current, {}, {reload: true});
 
   APIService.getallofficers(localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
         //alert(JSON.stringify(data))
@@ -62,6 +95,7 @@ angular.module('starter.controllers', [])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats, APIService, $ionicPopup, $ionicLoading) {
    $scope.officer={};
+
 
   APIService.getindividualofficer($stateParams.chatId, localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
         

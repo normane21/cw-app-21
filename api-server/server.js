@@ -413,7 +413,7 @@ apiRoutes.get('/v2/admin/individual/officer/:id', function(req, res) {
 
 
 // Insert Officer Route
-apiRoutes.post('/v2/admin/officer', function(req, res) {
+apiRoutes.post('/v2/admin/addlisting', function(req, res) {
  console.log('Input Officer Details');
   // find the uuid
   AdminUser.findOne({
@@ -433,7 +433,7 @@ apiRoutes.post('/v2/admin/officer', function(req, res) {
                     
             var officerinfo = new Officer({
                 
-                auth_key: req.headers['x-auth-key'],
+                //auth_key: req.headers['x-auth-key'],
 
                 department: req.body.department,
                 emp_name1: req.body.emp_name1,
@@ -467,7 +467,7 @@ apiRoutes.post('/v2/admin/officer', function(req, res) {
 
                 console.log('App ID: ' + req.body.app_id);
 
-                Sync.findOne({ app_id: req.body.app_id }, function (err, syncstatus){
+                Sync.findOne({ app_id: 'norman21-cwapp' }, function (err, syncstatus){
                     console.log('Sync Status: ' + syncstatus);
                     console.log('Update Status');
                     syncstatus.status += 1;

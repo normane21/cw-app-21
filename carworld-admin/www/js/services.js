@@ -178,7 +178,7 @@ angular.module('starter.services', [])
                 //device_id = 'AAA12345678ab';
 
                 $http({
-                    url: apiUrl +  '/api//v2/admin/officer/' + officer_id,
+                    url: apiUrl +  '/api/v2/admin/officer/' + officer_id,
                     method: "put",
                     headers: {                          
                         'Authorization': token,
@@ -209,7 +209,52 @@ angular.module('starter.services', [])
                 return promise;
             };
             return promise;
+        },
+
+        // Add Listing
+         addListing: function (token, auth_key, data) {
+            //alert('Add Listing')
+            var deferred = $q.defer(),
+                promise = deferred.promise;
+
+                //device_id = 'AAA12345678ab';
+
+                $http({
+                    url: apiUrl +  '/api/v2/admin/addlisting',
+                    method: "post",
+                    headers: {                          
+                        'Authorization': token,
+                        'x-auth-key': auth_key
+                    },
+                    data:data
+                    
+                })
+                 .then(function (response) {
+                    //alert('Success Add Listing On API Service ' + JSON.stringify(response));
+                    if (response.status === 200) {
+                        deferred.resolve(response.data);
+                    } else {
+                        deferred.reject(response.data);
+                    }
+                }, function (error) {
+                    alert('Error Add Listing On API Service ' + JSON.stringify(error));
+                    deferred.reject(error);
+                });
+                
+                
+            promise.success = function (fn) {
+                promise.then(fn);
+                return promise;
+            };
+            promise.error = function (fn) {
+                promise.then(null, fn);
+                return promise;
+            };
+            return promise;
         }
+
+
+
 
 
     }
