@@ -212,7 +212,7 @@ angular.module('starter.services', [])
         },
 
         // Add Listing
-         addListing: function (token, auth_key, data) {
+        addListing: function (token, auth_key, data) {
             //alert('Add Listing')
             var deferred = $q.defer(),
                 promise = deferred.promise;
@@ -251,7 +251,41 @@ angular.module('starter.services', [])
                 return promise;
             };
             return promise;
-        }
+        },
+
+        deleteListing: function (officer_id, token, auth_key) {
+            var deferred = $q.defer(),
+                promise = deferred.promise;
+              
+                $http({
+                    url: apiUrl +  '/api/v2/admin/officer/' + officer_id,
+                    method: "delete",
+                    headers: {                          
+                        'Authorization': token,
+                        'x-auth-key': auth_key
+                    }
+                })
+                 .then(function (response) {
+                    //alert('Success On API Service ' + JSON.stringify(response));
+                    if (response.status === 200) {
+                        deferred.resolve(response.data);
+                    }
+                }, function (error) {
+                    //alert('Error On API Service ' + JSON.stringify(error));
+                    deferred.reject(error);
+                });
+                
+                
+            promise.success = function (fn) {
+                promise.then(fn);
+                return promise;
+            };
+            promise.error = function (fn) {
+                promise.then(null, fn);
+                return promise;
+            };
+            return promise;
+        },
 
 
 

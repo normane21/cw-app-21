@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
     
 })
 
-.controller('ViewCtrl', function($scope, $ionicLoading, APIService, $ionicPopup) {
+.controller('ViewCtrl', function($scope, $ionicLoading, APIService, $ionicPopup,  $state) {
 
     $scope.officer={};
 
@@ -54,6 +54,8 @@ angular.module('starter.controllers', [])
               title: 'Success',
               template: '<center>Successfully Added {{$scope.officer.department}} Record.</center>'
           });
+
+          $state.go('tab.chats')
 
         })
     }    
@@ -93,7 +95,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, APIService, $ionicPopup, $ionicLoading) {
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, APIService, $ionicPopup, $ionicLoading, $state) {
    $scope.officer={};
 
 
@@ -130,6 +132,27 @@ angular.module('starter.controllers', [])
           title: 'Success',
           template: '<center>Successfully Updated {{$scope.officer.department}} Record.</center>'
       });
+
+      
+    })
+  };
+
+  $scope.Delete = function() {
+
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+    //alert(JSON.stringify($scope.officer))
+    APIService.deleteListing($stateParams.chatId, localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
+
+      //alert('Success Update : ' + JSON.stringify(data))
+      $ionicLoading.hide()
+      $ionicPopup.alert({
+          title: 'Success',
+          template: '<center>Successfully Deleted {{$scope.officer.department}} Record.</center>'
+      });
+
+      $state.go('tab.chats')
 
     })
   };

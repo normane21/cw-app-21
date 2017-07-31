@@ -495,6 +495,62 @@ apiRoutes.post('/v2/admin/addlisting', function(req, res) {
 });
 
 
+// Delete Officer Route
+apiRoutes.delete('/v2/admin/officer/:id', function(req, res) {
+ console.log('Delete Officer Details');
+ var o_id = req.params.id;
+
+  // find the uuid
+  AdminUser.findOne({
+    auth_key: req.headers['x-auth-key']
+  }, function(err, user) {
+
+    if (err) {
+      console.log(err);
+       throw err;
+    }
+
+    if (!user) {
+      //console.log(res);
+      res.status(401).json({ message: 'Unauthorized User Access', code: 100002 });
+    } else if (user) {
+
+        console.log('User Details : ' + user)
+        console.log('User ID : ' + user._id)
+             
+                    
+            
+            Officer.remove({ _id: o_id }, function (err, officer){    
+                  
+                Sync.findOne({ app_id: 'norman21-cwapp' }, function (err, syncstatus){
+                    console.log('Sync Status: ' + syncstatus);
+                    console.log('Update Status');
+                    syncstatus.status += 1;
+                    
+
+                    syncstatus.save(function(err) {
+                        if (err) throw err;                                           
+                    })
+
+                    console.log('Officer Deleted Successfully');
+
+                    res.status(200).json({
+                        'message': 'Officer Deleted Successfully.'
+                    });
+
+                });
+                
+            });
+
+            
+            
+            
+
+    }
+
+  });
+});
+
 // Update Officer Route
 apiRoutes.put('/v2/admin/officer/:id', function(req, res) {
  console.log('Update Officer Details');
