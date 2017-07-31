@@ -3,7 +3,7 @@ angular.module('cwapp.controllers', ['ionic.cloud'])
 .controller('directoryCtrl', function ($scope, $stateParams, DATA_CONFIG) {
 
 	$scope.employees = [];
-    aert('directory')
+    //aert('directory')
     document.addEventListener('deviceready', function() {
       var db = window.sqlitePlugin.openDatabase({name: 'cw1.db', key: 'lgc21normanlausgroup', location: 'default'});
 
@@ -94,7 +94,7 @@ angular.module('cwapp.controllers', ['ionic.cloud'])
                   db.transaction(function(tx) {
                     tx.executeSql('SELECT * FROM Officers', [], function(tx, rs) {
 
-                      alert('Record count : ' + JSON.stringify(rs.rows.item(0)));
+                      //alert('Record count : ' + JSON.stringify(rs.rows.item(0)));
                        alert('Record length: ' + JSON.stringify(rs.rows.length));
                     }, function(tx, error) {
                       alert('SELECT error: ' + error.message);
