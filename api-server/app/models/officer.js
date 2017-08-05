@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 module.exports = mongoose.model('Officer', new Schema({
+	level: Number,
 	department: String,	
 	emp_name1: String,
 	position1: String,

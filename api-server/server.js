@@ -434,7 +434,7 @@ apiRoutes.post('/v2/admin/addlisting', function(req, res) {
             var officerinfo = new Officer({
                 
                 //auth_key: req.headers['x-auth-key'],
-
+                level: req.body.level,
                 department: req.body.department,
                 emp_name1: req.body.emp_name1,
                 position1: req.body.position1,

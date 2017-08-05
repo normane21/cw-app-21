@@ -99,6 +99,7 @@ angular.module('starter.controllers', [])
 
   APIService.getindividualofficer($stateParams.chatId, localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
         
+        $scope.officer.level = data[0].level
         $scope.officer.department = data[0].department
         $scope.officer.emp_name1= data[0].emp_name1
         $scope.officer.position1 = data[0].position1
