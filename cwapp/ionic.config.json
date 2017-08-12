@@ -1,4 +1,8 @@
 {
   "name": "cwapp",
-  "app_id": "41835582"
+  "app_id": "41835582",
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*"
+  ]
 }

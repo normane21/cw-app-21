@@ -2,6 +2,10 @@
 
   <ion-content class="padding">
     <p style="font-size: 10px;">Note: If you wish to update, kindly change the information then click update.</p>
+     <label class="item item-input">
+      <span class="input-label">Level :</span>
+      <input type="text" value="test" ng-model="officer.level">
+    </label>
     <label class="item item-input">
       <span class="input-label">Department :</span>
       <input type="text" value="test" ng-model="officer.department">
@@ -20,6 +24,16 @@
     <label class="item item-input">
       <span class="input-label">1st Mobile No. :</span>
       <input type="text" value="test" ng-model="officer.mobile1">
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label">1st Landline No. :</span>
+      <input type="text" value="test" ng-model="officer.landline1">
+    </label>
+
+     <label class="item item-input">
+      <span class="input-label">Local :</span>
+      <input type="text" value="test" ng-model="officer.local">
     </label>
 
     <label class="item item-input">
@@ -43,15 +57,32 @@
     </label>
 
     <label class="item item-input">
+      <span class="input-label">2nd Landline No. :</span>
+      <input type="text" value="test" ng-model="officer.landline2">
+    </label>
+
+    <label class="item item-input">
       <span class="input-label">2nd Email :</span>
       <input type="text" value="test" ng-model="officer.email2">
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label">3rd Mobile No. :</span>
+      <input type="text"  ng-model="officer.mobile3">
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label">4th Mobile No. :</span>
+      <input type="text"  ng-model="officer.mobile4">
     </label>
 
     <div class="padding">
       <button nav-clear class="button button-block button-positive" ng-click="Update()">
         Update
       </button>
-   
+      <button nav-clear class="button button-block button-assertive" ng-click="Delete()">
+        Delete
+      </button>
     </div>
 
   </ion-content>
