@@ -8,12 +8,15 @@ module.exports = mongoose.model('Officer', new Schema({
 	position1: String,
 	mobile1: String,
 	landline1: String,
+	local: String,
 	email1: String,
 	emp_name2: String,
 	position2: String,
 	mobile2: String,
 	landline2: String,
 	email2: String,
+	mobile3: String,
+	mobile4: String,
 	date_created: String
 }));
 

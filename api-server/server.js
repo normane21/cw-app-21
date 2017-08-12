@@ -440,12 +440,15 @@ apiRoutes.post('/v2/admin/addlisting', function(req, res) {
                 position1: req.body.position1,
                 mobile1: req.body.mobile1,
                 landline1: req.body.landline1,
+                local: req.body.local,
                 email1: req.body.email1,
                 emp_name2: req.body.emp_name2,
                 position2: req.body.position2,
                 mobile2: req.body.mobile2,
                 landline2: req.body.landline2,
                 email2: req.body.email2,
+                mobile3: req.body.mobile3,
+                mobile4: req.body.mobile4,
 
                 date_created: currentdate
                 
@@ -530,13 +533,15 @@ apiRoutes.put('/v2/admin/officer/:id', function(req, res) {
                 officer.position1 = req.body.position1,
                 officer.mobile1 = req.body.mobile1,
                 officer.landline1 = req.body.landline1,
+                officer.local = req.body.local,
                 officer.email1 = req.body.email1,
                 officer.emp_name2 = req.body.emp_name2,
                 officer.position2 = req.body.position2,
                 officer.mobile2 = req.body.mobile2,
                 officer.landline2 = req.body.landline2,
                 officer.email2 = req.body.email2,
-
+                officer.mobile3 = req.body.mobile3,
+                officer.mobile4 = req.body.mobile4,
                 officer.date_created = currentdate
 
 
@@ -620,6 +625,117 @@ apiRoutes.post('/v2/admin/sync', function(req, res) {
 
                 res.status(200).json({
                     'message': 'Sync Status Updated Successfully.'
+                });
+
+            });
+            
+         
+
+    }
+
+  });
+});
+
+// Get Sync Data
+apiRoutes.get('/v2/admin/sync', function(req, res) {
+    var jsonData=[];
+    console.log('Get Sync Details');
+
+    AdminUser.findOne({
+        auth_key: req.headers['x-auth-key']
+    }, function(err, user) {
+
+        if (err) {
+          console.log(err);
+           throw err;
+        }
+
+        if (!user) {
+          //console.log(res);
+          res.status(401).json({ message: 'Unauthorized User Access', code: 100002 });
+        } else if (user) {
+            console.log(datetime);
+            console.log('Vehicle Info Saved Successfully');
+
+            Sync.find({}).cursor()
+            .on('data', function(sync){                    
+                jsonData.push(sync);
+            })
+            .on('error', function(err){
+               
+            })
+            .on('end', function(){
+              console.log("Sync Data Retrieved");
+              //var vehicleData = { data: jsonData };
+              res.status(200).json(jsonData);
+
+              /*
+              res.writeHead(200, {'Content-Type': 'application/json'});
+                res.write(jsonData);
+              res.end();
+
+              /*
+              res.status(200).json({
+                   
+                  'message': 'Queue retrieved successfully',
+                  'code': '200010'
+              });
+              */
+            });
+                
+                   // res.status(200).json({ 
+                   //   'message': 'Vehicle info set successfully.',
+                   //   'data': user
+                   // });
+               
+           
+         
+        }
+
+      });
+});
+
+//Delete Item Route 
+apiRoutes.delete('/v2/admin/officer/delete/:id', function(req, res) {
+ console.log('Delete Officer Details');
+ var o_id = req.params.id;
+  // find the uuid
+  AdminUser.findOne({
+    auth_key: req.headers['x-auth-key']
+  }, function(err, user) {
+
+    if (err) {
+      console.log(err);
+       throw err;
+    }
+
+    if (!user) {
+        res.status(401).json({ message: 'Unauthorized User Access', code: 100002 });
+    } else if (user) {
+
+       
+           
+            Officer.findOneAndRemove({ _id: o_id }, function (err, officer){    
+                //console.log('Sync Status: ' + syncstatus.status);
+                console.log('Success Remove Officer');
+                //syncstatus.status += 1;
+                //console.log('Updated Status : ' + syncstatus.status)
+
+                 Sync.findOne({ app_id: 'norman21-cwapp' }, function (err, syncstatus){
+                      console.log('Sync Status: ' + syncstatus);
+                      console.log('Update Officer Name');
+                      syncstatus.status += 1;
+                      
+
+                      syncstatus.save(function(err) {
+                          if (err) throw err;                                           
+                      })
+
+
+                  });
+
+                res.status(200).json({
+                    'message': 'Officer Remove Successfully.'
                 });
 
             });

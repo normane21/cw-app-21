@@ -1,4 +1,4 @@
-<ion-view title="{{employee.department}}" id="page5">
+<ion-view title="Carworld Contact Us" id="page5">
 
 
   <ion-content  class="has-header"  scroll="true">
@@ -7,7 +7,7 @@
             <div id="timelineContainer">
                 <!-- timeline background -->
                 <div id="timelineBackground">
-                    <img src="img/{{employee.level}}.jpg" class="bgImage">
+                    <img src="img/cwsanfernando.jpg" class="bgImage">
                 </div>
 
                 
@@ -22,7 +22,7 @@
                 <!-- timeline nav -->
                 <div id="timelineNav">
                     <div id="directoryIndividual-button-bar1" class="button-bar">
-                        <a class="button button-light button-block" ng-href="tel: {{employee.mobile1_actual}}">
+                        <a class="button button-light button-block" ng-href="tel: {{employee.mobile1}}">
                             <button id="directoryIndividual-button5"  class="button button-light  button-block ">
                                 
                                 <i class="icon_custom ion-ios-telephone"></i>
@@ -30,7 +30,7 @@
                             
                             </button>
                         </a>
-                        <a class="button button-light button-block" ng-href="sms: {{employee.mobile1_actual}}">
+                        <a class="button button-light button-block" ng-href="sms: {{employee.mobile1}}">
                             <button id="directoryIndividual-button6" class="button button-light  button-block icon">
                                 <i class="icon_custom ion-android-textsms"></i>
                                 <h5 id="button-profile">Send SMS</h5>
@@ -53,7 +53,7 @@
         <h3 class="profile-details">
             <i class="icon_custom ion-android-phone-portrait" id="detail-icon"></i>
             Mobile Number : 
-            <a class="contact_details" ng-href="tel: {{employee.mobile1_actual}}">
+            <a class="contact_details" ng-href="tel: {{employee.mobile1}}">
                 <b>{{employee.mobile1}}</b>
             </a>
         </h3>
@@ -61,8 +61,8 @@
         <h3 class="profile-details">
             <i class="icon_custom ion-ios-telephone" id="detail-icon"></i>
             Landline : 
-            <a class="contact_details" ng-href="tel: {{employee.telephone_actual}}">
-                <b>{{employee.landline1}}</b>
+            <a class="contact_details" ng-href="tel: {{employee.landline1}}">
+                <b>{{employee.landline1}} Local: {{employee.local}}</b>
             </a>
         </h3>
        
@@ -74,21 +74,8 @@
             </a>
         </h3>
         
-         <h3 class="profile-details" ng-show="employee.website">
-             <i class="icon_custom ion-ios-world" id="detail-icon"></i>
-            Website : 
-            <span ng-show="employee.image == 'carmix'">
-                <a class="contact_details" onclick="window.open('http://www.carmixlausgroup.com.ph', '_system', 'location=yes'); return false;" 
-                    <b>{{employee.website}}</b>
-                </a>
-            </span>
-            <span ng-show="employee.image == 'cgicoffice'">
-                <a class="contact_details" onclick="window.open('http://www.cgic.com.ph', '_system', 'location=yes'); return false;" 
-                    <b>{{employee.website}}</b>
-                </a>
-            </span>
-
-        </h3>
+    
+         
         <br/>
         
         <div ng-show="employee.emp_name2">
@@ -100,27 +87,27 @@
 
                 
 
-                <a class="item  item-icon-right second-text" ng-href="tel: {{employee.mobile2_actual}}">
+                <a class="item  item-icon-right second-text" ng-href="tel: {{employee.mobile2}}">
                     Mobile Number : <b>{{employee.mobile2}}</b>
                     <i class="icon ion-android-phone-portrait second"></i>
                 </a>
-                <a class="item  item-icon-right second-text" ng-href="sms: {{employee.mobile2_actual}}">
+                <a class="item  item-icon-right second-text" ng-href="sms: {{employee.mobile2}}">
                     SMS : <b>{{employee.mobile2}}</b>
                     <i class="icon ion-android-textsms second"></i>
                 </a>
-                <a ng-show="employee.mobile3_actual" class="item  item-icon-right second-text" ng-href="tel: {{employee.mobile3_actual}}">
+                <a ng-show="employee.mobile3 != null " class="item  item-icon-right second-text" ng-href="tel: {{employee.mobile3}}">
                     Additional Mobile No. : <b>{{employee.mobile3}}</b>
                     <i class="icon ion-android-phone-portrait second"></i>
                 </a>
-                <a ng-show="employee.mobile3_actual" class="item  item-icon-right second-text" ng-href="sms: {{employee.mobile3_actual}}">
+                <a ng-show="employee.mobile3" class="item  item-icon-right second-text" ng-href="sms: {{employee.mobile3}}">
                     SMS Number : <b>{{employee.mobile3}}</b>
                     <i class="icon ion-android-textsms second"></i>
                 </a>
-                <a ng-show="employee.mobile4_actual" class="item  item-icon-right second-text" ng-href="tel: {{employee.mobile4_actual}}">
+                <a ng-show="employee.mobile4" class="item  item-icon-right second-text" ng-href="tel: {{employee.mobile4}}">
                     Additional Mobile No. : <b>{{employee.mobile4}}</b>
                     <i class="icon ion-android-phone-portrait second"></i>
                 </a>
-                <a ng-show="employee.mobile4_actual" class="item  item-icon-right second-text" ng-href="sms: {{employee.mobile4_actual}}">
+                <a ng-show="employee.mobile4" class="item  item-icon-right second-text" ng-href="sms: {{employee.mobile4}}">
                     SMS Number : <b>{{employee.mobile4}}</b>
                     <i class="icon ion-android-textsms second"></i>
                 </a>

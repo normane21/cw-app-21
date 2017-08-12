@@ -132,6 +132,8 @@ angular.module('starter.services', [])
             return promise;
         },
 
+        
+
         getindividualofficer: function (officer_id, token, auth_key) {
             var deferred = $q.defer(),
                 promise = deferred.promise;
@@ -185,6 +187,45 @@ angular.module('starter.services', [])
                         'x-auth-key': auth_key
                     },
                     data:data
+                    
+                })
+                 .then(function (response) {
+                    //alert('Success On API Service ' + JSON.stringify(response));
+                    if (response.status === 200) {
+                        deferred.resolve(response.data);
+                    } else {
+                        deferred.reject(response.data);
+                    }
+                }, function (error) {
+                    //alert('Error On API Service ' + JSON.stringify(error));
+                    deferred.reject(error);
+                });
+                
+                
+            promise.success = function (fn) {
+                promise.then(fn);
+                return promise;
+            };
+            promise.error = function (fn) {
+                promise.then(null, fn);
+                return promise;
+            };
+            return promise;
+        },
+
+        deleteindividualofficer: function (officer_id, token, auth_key) {
+            var deferred = $q.defer(),
+                promise = deferred.promise;
+
+                //device_id = 'AAA12345678ab';
+
+                $http({
+                    url: apiUrl +  '/api/v2/admin/officer/delete/' + officer_id,
+                    method: "delete",
+                    headers: {                          
+                        'Authorization': token,
+                        'x-auth-key': auth_key
+                    }
                     
                 })
                  .then(function (response) {

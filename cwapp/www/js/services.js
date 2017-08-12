@@ -26,7 +26,7 @@ angular.module('app.services', [])
                         deferred.reject(response.data);
                     }
                 }, function (error) {
-                    alert('Error On API Service ' + JSON.stringify(error));
+                    //alert('Error On API Service ' + JSON.stringify(error));
                     deferred.reject(error);
                 });
                 
@@ -42,7 +42,7 @@ angular.module('app.services', [])
             return promise;
         },
         // Get All Officers
-        getallofficers: function (token, auth_key) {
+        getallofficers: function (token) {
            
             var deferred = $q.defer(),
                 promise = deferred.promise;
@@ -54,7 +54,7 @@ angular.module('app.services', [])
                     method: "get",
                     headers: {                          
                         'Authorization': token,
-                        'x-auth-key': auth_key
+                        'x-auth-key': 'lausgroup21'
                       }
                     
                 })
@@ -80,7 +80,48 @@ angular.module('app.services', [])
                 return promise;
             };
             return promise;
-        }
+        },
+
+        // Get All Officers
+        getsync: function (token) {
+           
+            var deferred = $q.defer(),
+                promise = deferred.promise;
+
+                //device_id = 'AAA12345678ab';
+
+                $http({
+                    url: apiUrl +  '/api/v2/admin/sync',
+                    method: "get",
+                    headers: {                          
+                        'Authorization': token,
+                        'x-auth-key': 'lausgroup21'
+                      }
+                    
+                })
+                 .then(function (response) {
+                    //alert('Success On API Service ' + JSON.stringify(response));
+                    if (response.status === 200) {
+                        deferred.resolve(response.data);
+                    } else {
+                        deferred.reject(response.data);
+                    }
+                }, function (error) {
+                    //alert('Error On API Service ' + JSON.stringify(error));
+                    deferred.reject(error);
+                });
+                
+                
+            promise.success = function (fn) {
+                promise.then(fn);
+                return promise;
+            };
+            promise.error = function (fn) {
+                promise.then(null, fn);
+                return promise;
+            };
+            return promise;
+        },
 
     }
 

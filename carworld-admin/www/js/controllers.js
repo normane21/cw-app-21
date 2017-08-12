@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
     
 })
 
-.controller('ViewCtrl', function($scope, $ionicLoading, APIService, $ionicPopup) {
+.controller('ViewCtrl', function($scope, $state, $ionicLoading, APIService, $ionicPopup) {
 
     $scope.officer={};
 
@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
               title: 'Success',
               template: '<center>Successfully Added {{$scope.officer.department}} Record.</center>'
           });
-
+          $state.go('tab.chats')
         })
     }    
     
@@ -65,12 +65,17 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatsCtrl', function($state, $scope, Chats, APIService) {
+.controller('ChatsCtrl', function($state, $scope, Chats, APIService, $ionicLoading) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
   //
+
+  $ionicLoading.show({
+    template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+  });
+
   $scope.$on('$ionicView.enter', function(e) {
         APIService.getallofficers(localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
             //alert(JSON.stringify(data))
@@ -85,6 +90,7 @@ angular.module('starter.controllers', [])
         //alert(JSON.stringify(data))
 
         $scope.chats = data
+        $ionicLoading.hide()
   })
 
   //$scope.chats = Chats.all();
@@ -93,7 +99,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, APIService, $ionicPopup, $ionicLoading) {
+.controller('ChatDetailCtrl', function($scope, $state, $stateParams, Chats, APIService, $ionicPopup, $ionicLoading) {
    $scope.officer={};
 
 
@@ -105,12 +111,15 @@ angular.module('starter.controllers', [])
         $scope.officer.position1 = data[0].position1
         $scope.officer.mobile1 = data[0].mobile1
         $scope.officer.landline1 = data[0].landline1
+        $scope.officer.landline1 = data[0].local
         $scope.officer.email1 = data[0].email1
         $scope.officer.emp_name2 = data[0].emp_name2
         $scope.officer.position2 = data[0].position2
         $scope.officer.mobile2 = data[0].mobile2
         $scope.officer.email2 = data[0].email2
         $scope.officer.landline2 = data[0].landline2
+        $scope.officer.mobile3 = data[0].mobile3
+        $scope.officer.mobile4 = data[0].mobile4
 
         //alert(JSON.stringify(data))
 
@@ -133,6 +142,28 @@ angular.module('starter.controllers', [])
           template: '<center>Successfully Updated {{$scope.officer.department}} Record.</center>'
       });
 
+       $state.go('tab.chats')
+
+    })
+  };
+
+
+  $scope.Delete = function() {
+
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+    //alert(JSON.stringify($scope.officer))
+    APIService.deleteindividualofficer($stateParams.chatId, localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
+
+      //alert('Success Delete : ' + JSON.stringify(data))
+      $ionicLoading.hide()
+      $ionicPopup.alert({
+          title: 'Success',
+          template: '<center>Successfully Deleted Record.</center>'
+      });
+
+      $state.go('tab.chats')
     })
   };
 
