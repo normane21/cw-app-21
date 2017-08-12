@@ -1,8 +1,29 @@
 <ion-view title="Carworld Pampanga" id="page2">
     <ion-content class="has-header">
-        
+
+           
+                 <ion-item ng-repeat="item in itemsList track by $index" id="item{{item.level}}" class="item item-text-wrap" > 
+                   <a ui-sref="tabsController.individualDirectory({id: '{{item.level}}'})" >
+                        <h2 class="content">
+                           {{item.department}}
+                        </h2>
+                    </a>
+                </ion-item>
             
-            <a ui-sref="tabsController.individualDirectory({id: '1'})" >
+
+            <!--
+            <ion-content class="padding">
+              <ion-list>
+                 
+                 <ion-item class="item-divider">List of Objects</ion-item>
+                   
+                    <ion-item ng-repeat="item in itemsList track by $index">
+                    {{$index}} - {{item.name}} - {{item.room}}
+                    </ion-item>
+              </ion-list>
+           </ion-content>
+            
+            
             <div class="item item-text-wrap" id="item1"> 
                 <h2 class="content">
                     LTO Registration and Plate Inquiries
@@ -70,7 +91,7 @@
             </a>
         
             <br>
-
+            -->
 
 
     </ion-content>

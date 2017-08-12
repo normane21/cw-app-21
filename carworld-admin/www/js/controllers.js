@@ -104,12 +104,13 @@ angular.module('starter.controllers', [])
         $scope.officer.emp_name1= data[0].emp_name1
         $scope.officer.position1 = data[0].position1
         $scope.officer.mobile1 = data[0].mobile1
+        $scope.officer.landline1 = data[0].landline1
         $scope.officer.email1 = data[0].email1
         $scope.officer.emp_name2 = data[0].emp_name2
         $scope.officer.position2 = data[0].position2
         $scope.officer.mobile2 = data[0].mobile2
         $scope.officer.email2 = data[0].email2
-
+        $scope.officer.landline2 = data[0].landline2
 
         //alert(JSON.stringify(data))
 

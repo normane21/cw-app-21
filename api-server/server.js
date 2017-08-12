@@ -439,10 +439,12 @@ apiRoutes.post('/v2/admin/addlisting', function(req, res) {
                 emp_name1: req.body.emp_name1,
                 position1: req.body.position1,
                 mobile1: req.body.mobile1,
+                landline1: req.body.landline1,
                 email1: req.body.email1,
                 emp_name2: req.body.emp_name2,
                 position2: req.body.position2,
                 mobile2: req.body.mobile2,
+                landline2: req.body.landline2,
                 email2: req.body.email2,
 
                 date_created: currentdate
@@ -521,15 +523,18 @@ apiRoutes.put('/v2/admin/officer/:id', function(req, res) {
                     
             
             Officer.findOne({ _id: o_id }, function (err, officer){    
-            
+                
+                officer.level = req.body.level,
                 officer.department = req.body.department,
                 officer.emp_name1 =  req.body.emp_name1,
                 officer.position1 = req.body.position1,
                 officer.mobile1 = req.body.mobile1,
+                officer.landline1 = req.body.landline1,
                 officer.email1 = req.body.email1,
                 officer.emp_name2 = req.body.emp_name2,
                 officer.position2 = req.body.position2,
                 officer.mobile2 = req.body.mobile2,
+                officer.landline2 = req.body.landline2,
                 officer.email2 = req.body.email2,
 
                 officer.date_created = currentdate
