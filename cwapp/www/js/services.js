@@ -1,7 +1,7 @@
 angular.module('app.services', [])
 
 
-.service('APIService', function($q, $http, apiUrl) {
+.service('APIService', function($q, $http, apiUrl, $rootScope) {
     return {
 
         // Get Token
@@ -122,6 +122,46 @@ angular.module('app.services', [])
             };
             return promise;
         },
+
+        showlisting: function(){
+            //alert('Update Listing')
+                $rootScope.itemsList = [];
+
+                //$window.location.reload();   
+                //$scope.itemsList.push({"name":"big screen TV", "room":"Basement"});
+                //$scope.itemsList.push({"name":"Xbox One", "room":"Basement"});
+                //$scope.itemsList.push({"name":"Ice Maker", "room":"Kitchen"});
+                //$scope.itemsList.push({"name":"China Cabinet", "room":"Dining Room"});
+
+                //aert('directory')
+                document.addEventListener('deviceready', function() {
+                  var db = window.sqlitePlugin.openDatabase({name: 'cw1.db', key: 'lgc21normanlausgroup', location: 'default'});
+
+                 
+                  db.transaction(function(tx) {
+                    tx.executeSql('SELECT * FROM Officers ORDER BY level ASC', [], function(tx, rs) {
+
+                       // alert
+                       // $scope.itemsList = DATA_CONFIG.employees;
+                       //alert(rs.rows.length)
+                        if(rs.rows.length >0){
+
+                            for(var i=0; i<rs.rows.length; i++){
+                                $rootScope.itemsList.push(rs.rows.item(i));                    
+                            } 
+                            
+                        }
+
+                        //alert(JSON.stringify($scope.itemsList));
+                        //alert('Record count (expected to be 2): ' + JSON.stringify(rs.rows.items);
+                        //alert('Record length: ' + JSON.stringify(rs.rows.length));
+                    }, function(tx, error) {
+                      //alert('SELECT error: ' + error.message);
+                    });
+                  });
+                    
+                });
+        }
 
     }
 

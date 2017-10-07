@@ -26,7 +26,7 @@ angular.module('starter.services', [])
                         deferred.reject(response.data);
                     }
                 }, function (error) {
-                    alert('Error On API Service ' + JSON.stringify(error));
+                    //alert('Error On API Service ' + JSON.stringify(error));
                     deferred.reject(error);
                 });
                 

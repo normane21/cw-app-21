@@ -1,45 +1,9 @@
 angular.module('cwapp.controllers', ['ionic.cloud'])
   
-.controller('directoryCtrl', function ($scope, $stateParams) {
+.controller('directoryCtrl', function ($scope, $stateParams, APIService) {
 
-	$scope.itemsList = [];
-
-    //$window.location.reload();   
-    //$scope.itemsList.push({"name":"big screen TV", "room":"Basement"});
-    //$scope.itemsList.push({"name":"Xbox One", "room":"Basement"});
-    //$scope.itemsList.push({"name":"Ice Maker", "room":"Kitchen"});
-    //$scope.itemsList.push({"name":"China Cabinet", "room":"Dining Room"});
-
-    //aert('directory')
-    document.addEventListener('deviceready', function() {
-      var db = window.sqlitePlugin.openDatabase({name: 'cw1.db', key: 'lgc21normanlausgroup', location: 'default'});
-
-     
-      db.transaction(function(tx) {
-        tx.executeSql('SELECT * FROM Officers ORDER BY level ASC', [], function(tx, rs) {
-
-           // alert
-           // $scope.itemsList = DATA_CONFIG.employees;
-           //alert(rs.rows.length)
-            if(rs.rows.length >0){
-
-                for(var i=0; i<rs.rows.length; i++){
-                    $scope.itemsList.push(rs.rows.item(i));                    
-                } 
-                
-            }
-
-            //alert(JSON.stringify($scope.itemsList));
-            //alert('Record count (expected to be 2): ' + JSON.stringify(rs.rows.items);
-            //alert('Record length: ' + JSON.stringify(rs.rows.length));
-        }, function(tx, error) {
-          //alert('SELECT error: ' + error.message);
-        });
-      });
-        
-    });
-
-    
+	
+    APIService.showlisting()
 
     /*
 
@@ -61,9 +25,9 @@ angular.module('cwapp.controllers', ['ionic.cloud'])
 
 })
    
-.controller('homeCtrl', function ($scope, $state, $window, $rootScope, $stateParams, $ionicPush, $ionicPopup, APIService, $cordovaSQLite, $ionicLoading) {
+.controller('homeCtrl', function ($scope, $state, $window, $rootScope, $stateParams, $ionicPush, $ionicPopup, APIService, $cordovaSQLite, $ionicLoading, $rootScope) {
 
-    
+  
 
   $ionicPush.register().then(function(t) {
     return $ionicPush.saveToken(t);
@@ -83,17 +47,39 @@ angular.module('cwapp.controllers', ['ionic.cloud'])
   });
 
 
+    APIService.getToken().success(function(data){
+        //alert(JSON.stringify(data))
+        localStorage.setItem("token", data.access_token);
+        
+        APIService.getsync(localStorage.getItem("token")).success(function(data){
+            //alert('From Api : ' + JSON.stringify(data[0].status))
+            //alert('From Local : ' + localStorage.getItem("sync"))
+            if(data[0].status != localStorage.getItem("sync")){
+                //alert('need update')
+                //localStorage.setItem("update", true)
+                syncRecord()
+            }else{
+                //alert('Update Listing')
+                $rootScope.itemsList = [];
 
-    APIService.getsync(localStorage.getItem("token")).success(function(data){
-        //alert('From Api : ' + JSON.stringify(data[0].status))
-        //alert('From Local : ' + localStorage.getItem("sync"))
-        if(data[0].status != localStorage.getItem("sync")){
-            //alert('need update')
-            //localStorage.setItem("update", true)
-            syncRecord()
-        }
-        //alert('Sync Value : ' + JSON.stringify(data))
-        //alert(localStorage.getItem("sync"));
+                //$window.location.reload();   
+                //$scope.itemsList.push({"name":"big screen TV", "room":"Basement"});
+                //$scope.itemsList.push({"name":"Xbox One", "room":"Basement"});
+                //$scope.itemsList.push({"name":"Ice Maker", "room":"Kitchen"});
+                //$scope.itemsList.push({"name":"China Cabinet", "room":"Dining Room"});
+
+                //aert('directory')
+                APIService.showlisting()
+
+            }
+            //alert('Sync Value : ' + JSON.stringify(data))
+            //alert(localStorage.getItem("sync"));
+        }, function(error) {
+            //alert('Get Sync ERROR: ' + error.message);
+        });
+    }).error(function(apidata) {                
+      //alert('Error Code : ' + JSON.stringify(apidata))        
+      APIService.showlisting()
     })
 
     //localStorage.setItem("update", true)
@@ -161,32 +147,7 @@ angular.module('cwapp.controllers', ['ionic.cloud'])
                   });
 
                   
-                   db.transaction(function(tx) {
-                        tx.executeSql('SELECT * FROM Officers ORDER BY level ASC', [], function(tx, rs) {
-
-                           // alert
-                           // $scope.itemsList = DATA_CONFIG.employees;
-                           //alert(rs.rows.length)
-                            if(rs.rows.length >0){
-
-                                for(var i=0; i<rs.rows.length; i++){
-                                    $rootScope.itemsList.push(rs.rows.item(i));                    
-                                } 
-                                
-                            }
-
-                            //alert(JSON.stringify($scope.itemsList));
-                            //alert('Record count (expected to be 2): ' + JSON.stringify(rs.rows.items);
-                            //alert('Record length: ' + JSON.stringify(rs.rows.length));
-                        }, function(tx, error) {
-                          //alert('SELECT error: ' + error.message);
-                        });
-                    });
-
-                    $rootscope.$apply(function() {
-                      // perform variable update here.
-                      self.value += 1;
-                    });
+                    APIService.showlisting()
                     
                 });
 
@@ -198,28 +159,28 @@ angular.module('cwapp.controllers', ['ionic.cloud'])
 
         }).error(function(apidata) {  
             if(localStorage.getItem("install")==null){
-                 $ionicLoading.hide();            
-                  var errorConnection = $ionicPopup.show({
-                        title: "Error Internet Connection",
-                        template: "Internet connection is needed for first time install",
-                        scope: $scope, 
-                        buttons: [ 
-                            { 
-                                text:  "Try Again",
-                                type: 'button-positive',  
-                                onTap: function (){
-                                    return "tryagain"; 
-                                } 
-                            }          
-                        ]    
-                    });   
+                $ionicLoading.hide();            
+                var errorConnection = $ionicPopup.show({
+                    title: "Error Internet Connection",
+                    template: "Internet connection is needed for first time install",
+                    scope: $scope, 
+                    buttons: [ 
+                        { 
+                            text:  "Try Again",
+                            type: 'button-positive',  
+                            onTap: function (){
+                                return "tryagain"; 
+                            } 
+                        }          
+                    ]    
+                });   
 
-                    errorConnection.then(function(result) {
-                        if(result == "tryagain"){
+                errorConnection.then(function(result) {
+                    if(result == "tryagain"){
 
-                            $window.location.reload();               
-                        }                        
-                    });        
+                        $window.location.reload();               
+                    }                        
+                });        
             }  
             
         })

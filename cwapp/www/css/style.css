@@ -382,8 +382,8 @@ a:link {
     text-decoration: none;
 }
 
-#item1{
-	background: url("../img/vehicle-registration.jpg");
+#item1{	
+	background: url("../img/service-department.jpg");
 	height: 100px;
 	width: 90%;
 	display: table;
@@ -400,6 +400,7 @@ a:link {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
+    
 }
 
 #item2{
@@ -481,6 +482,7 @@ a:link {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
+
 }
 
 #item6{

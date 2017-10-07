@@ -1,11 +1,14 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, APIService, $ionicPopup, $state) {
+.controller('LoginCtrl', function($state, $scope, APIService, $ionicPopup, $state, $ionicLoading) {
     $scope.user = {};
 
 
 
     $scope.login = function() {
+        $ionicLoading.show({
+          template: '<p>Checking Credentials ...</p><ion-spinner></ion-spinner>'
+        });
         //console.log('Login : ' + JSON.stringify($scope.user.username));
         APIService.getToken().success(function(data){
             //console.log(JSON.stringify(data))
@@ -13,12 +16,13 @@ angular.module('starter.controllers', [])
             localStorage.setItem("token", data.access_token);
 
             APIService.login(data.access_token, $scope.user.username, $scope.user.password).success(function(data){
-                console.log('Login Auth Key: ' + JSON.stringify(data.x_auth_key.auth_key))
+                //alert('Login Auth Key: ' + JSON.stringify(data.x_auth_key.auth_key))
                 localStorage.setItem("auth_key", data.x_auth_key.auth_key);
                 $state.go('tab.chats')
+                $ionicLoading.hide()
             }).error(function(apidata) {                
-                console.log('Error Code : ' + JSON.stringify(apidata.data.code))
-
+                //alert('Error Code : ' + JSON.stringify(apidata.data.code))
+                $ionicLoading.hide()
                 if(apidata.data.code == '10112'){
                     $ionicPopup.alert({
                         title: 'Something went wrong',
@@ -27,6 +31,33 @@ angular.module('starter.controllers', [])
                 }
             })
 
+        }).error(function(apidata) {                
+            //alert('Error Code : ' + JSON.stringify(apidata))
+            $ionicLoading.hide()
+              
+            var errorConnection = $ionicPopup.show({
+                title: "Error Internet Connection",
+                template: "Internet connection is needed for first time install",
+                scope: $scope, 
+                buttons: [ 
+                    { 
+                        text:  "Try Again",
+                        type: 'button-positive',  
+                        onTap: function (){
+                            return "tryagain"; 
+                        } 
+                    }          
+                ]    
+            });   
+
+            errorConnection.then(function(result) {
+                if(result == "tryagain"){
+
+                    $window.location.reload();               
+                }                        
+            });  
+                 
+                
         })
 
     }
@@ -66,12 +97,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChatsCtrl', function($state, $scope, Chats, APIService, $ionicLoading) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-
+ 
+  
   $ionicLoading.show({
     template: '<p>Loading...</p><ion-spinner></ion-spinner>'
   });
@@ -79,7 +106,6 @@ angular.module('starter.controllers', [])
   $scope.$on('$ionicView.enter', function(e) {
         APIService.getallofficers(localStorage.getItem("token"), localStorage.getItem("auth_key")).success(function(data){
             //alert(JSON.stringify(data))
-
             $scope.chats = data
       })
   });
@@ -111,7 +137,7 @@ angular.module('starter.controllers', [])
         $scope.officer.position1 = data[0].position1
         $scope.officer.mobile1 = data[0].mobile1
         $scope.officer.landline1 = data[0].landline1
-        $scope.officer.landline1 = data[0].local
+        $scope.officer.local = data[0].local
         $scope.officer.email1 = data[0].email1
         $scope.officer.emp_name2 = data[0].emp_name2
         $scope.officer.position2 = data[0].position2

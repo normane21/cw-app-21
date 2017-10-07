@@ -62,7 +62,7 @@
             <i class="icon_custom ion-ios-telephone" id="detail-icon"></i>
             Landline : 
             <a class="contact_details" ng-href="tel: {{employee.landline1}}">
-                <b>{{employee.landline1}} Local: {{employee.local}}</b>
+                <b>{{employee.landline1}} <span ng-show="employee.local">Local: {{employee.local}}</span></b>
             </a>
         </h3>
        
