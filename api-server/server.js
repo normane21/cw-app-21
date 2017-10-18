@@ -800,5 +800,64 @@ apiRoutes.get('/v2/admin/vehicle/:plateno', function(req, res) {
   });
 });
 
+// Get All Vehicles Route 
+apiRoutes.get('/v2/admin/all/vehicles', function(req, res) {
+    var jsonData=[];
+    console.log('Get All Vehicles Details');
+
+    AdminUser.findOne({
+        auth_key: req.headers['x-auth-key']
+    }, function(err, user) {
+
+        if (err) {
+          console.log(err);
+           throw err;
+        }
+
+        if (!user) {
+          //console.log(res);
+          res.status(401).json({ message: 'Unauthorized User Access', code: 100002 });
+        } else if (user) {
+            console.log(datetime);
+            
+
+            Vehicle.find({}).cursor()
+            .on('data', function(vehicles){                    
+                jsonData.push(vehicles);
+            })
+            .on('error', function(err){
+               
+            })
+            .on('end', function(){
+              console.log("Vehicles Data Retrieved");
+              //var vehicleData = { data: jsonData };
+              res.status(200).json(jsonData);
+
+              /*
+              res.writeHead(200, {'Content-Type': 'application/json'});
+                res.write(jsonData);
+              res.end();
+
+              /*
+              res.status(200).json({
+                   
+                  'message': 'Queue retrieved successfully',
+                  'code': '200010'
+              });
+              */
+            });
+                
+                   // res.status(200).json({ 
+                   //   'message': 'Vehicle info set successfully.',
+                   //   'data': user
+                   // });
+               
+           
+         
+        }
+
+      });
+});
+
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);

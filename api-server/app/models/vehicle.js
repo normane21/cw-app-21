@@ -4,7 +4,10 @@ var Schema = mongoose.Schema;
 module.exports = mongoose.model('Vehicle', new Schema({
 	auth_key: String,
 	
-	plateno: String,
+	section: String,
+	affiliate: String,      
+	no: Number,
+	plate_no: String,
 	brand: String,
 	model: String,
 	year_model: String,
@@ -19,6 +22,7 @@ module.exports = mongoose.model('Vehicle', new Schema({
 	remarks: String,
 	actual_mileage: String,
 	renewal: String,
-    datecreated: String
+	status: String,
+  	updated_at: { type: Date, default: Date.now }
 }));
 
